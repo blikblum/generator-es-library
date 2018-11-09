@@ -12,7 +12,7 @@ let dependencies = Object.assign({}, pkg.dependencies || {}, pkg.peerDependencie
 // Clean up the output directory
 promise = promise.then(() => del(['dist/*']))
 
-const outputName = 'index'
+const outputName = pkg.name
 
 const exportName = pkg.name
 
