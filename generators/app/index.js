@@ -6,33 +6,52 @@ const yosay = require('yosay');
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(
-      yosay(`Welcome to the super-duper ${chalk.red('generator-es-library')} generator!`)
-    );
+    this.log(yosay(`Welcome to ${chalk.red('generator-es-library')} generator!`));
+
+    const userName = this.user.git.name();
 
     const prompts = [
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        name: 'name',
+        default: '',
+        message: 'Library name'
+      },
+      {
+        name: 'packageName',
+        default: '',
+        message: 'Package name'
+      },
+      {
+        name: 'repository',
+        default: '',
+        message: 'Github repository'
+      },
+      {
+        name: 'author',
+        default: userName,
+        message: 'Author'
       }
     ];
 
-    return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    });
+    return this.prompt(prompts)
+      .then(props => {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      })
+      .catch(err => {
+        console.error('Error prompting for values:', err);
+      });
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+    this.fs.copyTpl(this.templatePath(''), this.destinationRoot(), this.props);
+
+    this.fs.copy(this.templatePath('.*'), this.destinationRoot());
+
+    this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
   }
 
   install() {
-    this.installDependencies();
+    this.yarnInstall();
   }
 };
