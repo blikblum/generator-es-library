@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "A project template for authoring and publishing JavaScript libraries",
   "repository": "<%- repository %>",
-  "author": "Luiz Américo Pereira Câmara",
+  "author": "<%- author %>",
   "contributors": [
-    "Luiz Américo Pereira Câmara"
+    "<%- author %>"
   ],
   "license": "MIT",
   "keywords": [],
@@ -16,17 +16,20 @@
     ]
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.2.0",
-    "babel-preset-env": "^1.7.0",
-    "del": "^3.0.0",
-    "jest": "^23.2.0",
-    "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^3.0.5",
-    "standard": "^12.0.1"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-jest": "^25.2.6",
+    "del": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.2.7",
+    "prettier": "^2.0.2",
+    "rollup": "^2.3.3",
+    "rollup-plugin-babel": "^4.4.0"
   },
   "scripts": {
-    "lint": "standard src test tools",
+    "lint": "eslint src test tools",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
