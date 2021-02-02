@@ -5,22 +5,38 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "args": [
+        "--require",
+        "chai/register-expect",
+        "--colors",
+        "${workspaceFolder}/test/*.spec.js"
+      ],
+      "internalConsoleOptions": "openOnSessionStart",
+      "name": "Mocha Tests",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "request": "launch",
-      "name": "Jest All",
-      "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      "args": ["--runInBand"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
     },
     {
-      "type": "node",
+      "args": [
+        "--watch",
+        "--parallel",
+        "--require",
+        "chai/register-expect",
+        "--colors",
+        "${workspaceFolder}/test/*.spec.js"
+      ],
+      "internalConsoleOptions": "openOnSessionStart",
+      "name": "Mocha Watch Tests",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "request": "launch",
-      "name": "Jest Current File",
-      "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      "args": ["${relativeFile}"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    }
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    },
   ]
 }

@@ -2,7 +2,7 @@
 
 const del = require('del')
 const rollup = require('rollup')
-const babel = require('rollup-plugin-babel')
+const { babel } = require('@rollup/plugin-babel')
 const pkg = require('../package.json')
 
 let promise = Promise.resolve()

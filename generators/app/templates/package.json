@@ -2,6 +2,7 @@
   "name": "<%- packageName %>",
   "version": "0.0.0",
   "description": "A project template for authoring and publishing JavaScript libraries",
+  "type": "module",
   "repository": "<%- repository %>",
   "author": "<%- author %>",
   "contributors": [
@@ -10,30 +11,24 @@
   "license": "MIT",
   "keywords": [],
   "main": "dist/<%- packageName %>.js",
-  "jest": {
-    "modulePathIgnorePatterns": [
-      "<rootDir>/dist/"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "babel-jest": "^25.2.6",
-    "del": "^5.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^25.2.7",
+    "@rollup/plugin-babel": "^5.2.3",
+    "chai": "^4.2.0",
+    "del": "^6.0.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "mocha": "^8.2.1",
     "prettier": "^2.0.2",
     "rollup": "^2.3.3",
-    "rollup-plugin-babel": "^4.4.0"
+    "sinon": "^9.2.4"
   },
   "scripts": {
     "lint": "eslint src test tools",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cover": "jest --coverage",
-    "build": "node tools/build",
+    "test": "mocha --require chai/register-expect test/*.spec.js",
+    "test:watch": "mocha --watch --parallel --require chai/register-expect test/*.spec.js",
+    "build": "node tools/build.cjs",
     "prepublishOnly": "npm run build"
   }
 }
